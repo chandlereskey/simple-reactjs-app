@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Customers from './Customers'
-import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-
+import { Tab, Tabs } from 'react-bootstrap';
+import Home from './Tabs/Home/Home';
+import Calculator from './Tabs/Calculator/Calculator';
+import ImageUploader from './Tabs/ImageStuff/ImageUploader'
 
 class App extends Component {
   render() {
     console.log("Host URL"+process.env.PUBLIC_URL);
     return (
-
-      <Router basename={process.env.PUBLIC_URL}>
         <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Simple React App</h1>
-        </header>
-          <Switch>
-                <Route exact path= "/" render={() => (
-                  <Redirect to="/customerlist"/>
-                )}/>
-                 <Route exact path='/customerlist' component={Customers} />
-          </Switch>
-      </div>
-    </Router>
+          <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+            <Tab eventKey="home" title="Home">
+              <Home/>
+            </Tab>
+            <Tab eventKey="calculator" title="Calculator">
+              <Calculator/>
+            </Tab>
+            <Tab eventKey="imageai" title="ImageAI">
+              <ImageUploader/>
+            </Tab>
+          </Tabs>
+        </div>
     );
   }
 }
