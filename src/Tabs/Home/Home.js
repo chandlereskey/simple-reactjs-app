@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import '../../App.css';
-import Customers from '../../Customers'
+import Customers from './Customers'
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 
 class Home extends Component {
   render() {
-    console.log("Host URL"+process.env.PUBLIC_URL);
     return (
 
       <Router basename={process.env.PUBLIC_URL}>

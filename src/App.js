@@ -7,7 +7,6 @@ import ImageUploader from './Tabs/ImageStuff/ImageUploader'
 
 class App extends Component {
   render() {
-    console.log("Host URL"+process.env.PUBLIC_URL);
     return (
         <div className="App">
           <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">

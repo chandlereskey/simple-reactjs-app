@@ -1,5 +1,4 @@
-import cloudinary from 'cloudinary'
-//const cloudinaryCore = new cloudinary.cloudinaryCore({cloud_name: 'dhtzwjvo9'})
+import axios from 'axios';
 const baseURL = "https://chandlerlearning.cognitiveservices.azure.com/";
 const subscriptionKey = "0a427b5da2dc4057a50ab1081dc38ee3";
 
@@ -12,21 +11,14 @@ const computerVisionClient = new ComputerVisionClient(
     baseURL
   );
 
-cloudinary.config({
-  cloud_name: 'dhtzwjvo9',
-  api_key: '488586552273439',
-  api_secret: 'TytB8YiO_PXCklE7F6K2AGniPYA'
-})
-
-
 
 export const uploading = async (image) => {
-  console.log('before cloudinary')
-    const result = await cloudinary.v2.uploader.upload(image);
-    console.log('result: ', result)
-    const formattedUrl = result.secure_url
-    const response = await computerVisionClient.analyzeImage(formattedUrl, {
+    let result = ''
+    await axios.post("https://api.cloudinary.com/v1_1/dhtzwjvo9/image/upload", image).then((response) => {
+      result = response.data.secure_url
+    })
+    const objects = (await computerVisionClient.analyzeImage(result, {
         visualFeatures: ["Objects"]
-    }).objects;
-    console.log(response)
+    })).objects;
+    return objects
 }

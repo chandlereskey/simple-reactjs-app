@@ -5,8 +5,6 @@ import './Calculator.css'
 
 const Calculator = () => {
 
-    const [display, setDisplay] = React.useState('')
-
     const [answer, setAnswer] = React.useState('')
     const [val1, setVal1] = React.useState('')
     const [val2, setVal2] = React.useState('')
